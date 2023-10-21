@@ -1,20 +1,20 @@
 import React from "react";
+import myImage from "./mode.png";
 
 const Header = ({ handleDarkMode }) => {
   return (
-    <div className="header">
-      <h1>Quick-Notes</h1>
-      <button
-        onClick={() => 
-            handleDarkMode(
-                (previousDarkMode) => !previousDarkMode
-            )
+    <button
+      onClick={() => handleDarkMode((previousDarkMode) => {
+        if (previousDarkMode) {
+          localStorage.setItem("react-app-theme", "");
+        } else {
+          localStorage.setItem("react-app-theme", true);
         }
-        className="mode-button"
-      >
-        Change Theme
-      </button>
-    </div>
+        return !previousDarkMode;
+      })}
+      className="mode-button mt-5">
+      <img className="mode mb-2" src={myImage}/>
+    </button>
   );
 };
 
